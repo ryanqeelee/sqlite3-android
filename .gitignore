@@ -2,3 +2,4 @@
 /libs/
 /obj/
 /sqlite-amalgamation-*.zip
+.vscode/

@@ -1,12 +1,12 @@
 # /home/norbert/sqlite3-android/Makefile
 #
 .DEFAULT_GOAL		:= build
-SQLITE_AMALGATION	:= sqlite-amalgamation-3250200
-SQLITE_SOURCEURL	:= https://sqlite.org/2018/$(SQLITE_AMALGATION).zip
+SQLITE_AMALGATION	:= sqlite-amalgamation-3500200
+SQLITE_SOURCEURL	:= https://sqlite.org/2025/$(SQLITE_AMALGATION).zip
 # TARGET ABI := armeabi armeabi-v7a arm64-v8a x86 x86_64 mips mips64 (or all)
-TARGET_ABI		:= armeabi
-# URL_DOWNLOADER	:= wget -c
-URL_DOWNLOADER		:= aria2c -q -c -x 3
+TARGET_ABI		:= armeabi-v7a
+URL_DOWNLOADER	:= wget -c
+# URL_DOWNLOADER		:= aria2c -q -c -x 3
 CHECK_NDKPATH		:= $(shell which ndk-build >/dev/null 2>&1 ; echo $$?)
 
 

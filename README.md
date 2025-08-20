@@ -1,30 +1,68 @@
-Overview
---------
-Makefile and Android.mk necessary to compile sqlite3 for Android.
+# SQLite3 多平台构建项目
 
-Requirements
-------------
-* aria2c (or wget). Replace URL_DOWNLOADER variable in Makefile for other downloader.
-* Android NDK
+本项目提供了在多个平台上构建 SQLite3 的完整解决方案，包括 **Android**、**macOS** 和 **NVIDIA Jetson Orin Nano** 平台。
 
-Build
------
-Install/extract the [Android NDK](https://developer.android.com/ndk/downloads/index.html) then:
+## 🎯 支持平台
 
-    PATH=/path/to/ndk/dir:$PATH
-    cd sqlite3-android
-    make
+| 平台 | 架构 | 状态 |
+|------|------|------|
+| **Android** | ARM32, ARM64, x86, x86_64 | ✅ 完全支持 |
+| **macOS** | Intel x64, Apple Silicon | ✅ 完全支持 |
+| **Jetson Orin Nano** | ARM64 | ✅ 完全支持 |
 
-By default, it will build binaries for armeabi-v7. To build for other arch, replace the TARGET_ABI variable in Makefile.
+## 🚀 快速开始
 
-Available ABIS:
+### 自动构建（推荐）
+```bash
+# 自动检测当前平台并构建
+./build_auto.sh
+```
 
-armeabi (Deprecated in Android NDK r16. Will be removed in Android NDK r17)
+### 手动选择平台
+```bash
+# 查看所有构建选项
+make help
 
-armeabi-v7a
+# Android 构建
+make android
 
-arm64-v8a
+# macOS 构建  
+make mac
 
-x86
+# Jetson 构建
+make jetson
 
-x86_64
+# 自动检测平台
+make auto
+```
+
+## 📋 环境要求
+
+### Android 平台
+- Android NDK (推荐 28+)
+- 设置 NDK_ROOT 环境变量
+
+### macOS 平台  
+- Xcode 命令行工具
+- macOS 10.15+ (Intel) / 11.0+ (Apple Silicon)
+
+### Jetson Orin Nano
+- Ubuntu 22.04
+- build-essential
+
+## 📚 详细文档
+
+- **[多平台构建指南](README_MULTIPLATFORM.md)** - 完整的多平台构建说明
+- **[使用说明](README_USAGE.md)** - Android 平台集成指南  
+- **[集成指南](INTEGRATION_GUIDE.md)** - 详细的项目集成方法
+
+## ⚡ 特性
+
+- **完整功能**：支持 FTS、JSON、R-Tree、向量扩展
+- **高性能**：针对各平台优化编译
+- **易集成**：提供完整的头文件和库文件
+- **多架构**：支持通用二进制文件（macOS）
+
+---
+
+**💡 提示**：首次使用建议运行 `./build_auto.sh` 进行自动构建！

@@ -144,9 +144,9 @@ build_sqlite3_shared() {
                   -DSQLITE_VEC_ENABLE_NEON \
                   -O3 \
                   -fPIC \
+                  -flax-vector-conversions \
                   -march=armv8-a \
-                  -mtune=cortex-a78 \
-                  -mfpu=neon-fp-armv8"
+                  -mtune=cortex-a78"
     
     # 检查是否为 Jetson 平台，添加特定优化
     if [ -f "/etc/nv_tegra_release" ]; then
@@ -191,11 +191,9 @@ build_sqlite3_static() {
                   -DSQLITE_SECURE_DELETE \
                   -DSQLITE_TEMP_STORE=2 \
                   -DSQLITE_VEC_STATIC=1 \
-                  -DSQLITE_VEC_ENABLE_NEON \
                   -O3 \
                   -march=armv8-a \
-                  -mtune=cortex-a78 \
-                  -mfpu=neon-fp-armv8"
+                  -mtune=cortex-a78"
     
     # 检查是否为 Jetson 平台
     if [ -f "/etc/nv_tegra_release" ]; then
@@ -225,13 +223,14 @@ build_sqlite3_cli() {
     print_info "编译 SQLite3 命令行工具..."
     
     local cflags="-O3 \
+                  -DSQLITE_CORE \
                   -DSQLITE_THREADSAFE=0 \
                   -DSQLITE_OMIT_LOAD_EXTENSION \
                   -DSQLITE_VEC_STATIC=1 \
                   -DSQLITE_VEC_ENABLE_NEON \
                   -march=armv8-a \
-                  -mtune=cortex-a78 \
-                  -mfpu=neon-fp-armv8"
+                  -flax-vector-conversions \
+                  -mtune=cortex-a78"
     
     # 检查是否为 Jetson 平台
     if [ -f "/etc/nv_tegra_release" ]; then
